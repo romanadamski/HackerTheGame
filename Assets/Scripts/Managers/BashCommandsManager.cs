@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Diagnostic = System.Diagnostics;
 using UnityEngine;
 using System.Threading.Tasks;
+using System;
 
 public class BashCommandsManager : BaseManager<BashCommandsManager>
 {
@@ -21,8 +22,19 @@ public class BashCommandsManager : BaseManager<BashCommandsManager>
             }
         };
 
-        proc.Start();
-        proc.WaitForExit();
-        return proc.StandardOutput.ReadToEnd();
+        try
+        {
+            proc.Start();
+            proc.WaitForExit();
+            return proc.StandardOutput.ReadToEnd();
+        }
+        catch (Exception e)
+        {
+            var message = e.Message;
+            message += e.InnerException != null
+                ? "\n" + e.InnerException.Message
+                : string.Empty;
+            return message;
+        }
     }
 }
