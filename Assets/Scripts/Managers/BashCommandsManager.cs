@@ -7,25 +7,24 @@ public class BashCommandsManager : BaseManager<BashCommandsManager>
 {
     private void Start()
     {
-        Debug.Log(ExecuteBashCommand("echo \"dupa\""));
+        ExecuteBashCommand("git", "status");
     }
 
-    private string ExecuteBashCommand(string command)
+    public string ExecuteBashCommand(string path, string command)
     {
         command = command.Replace("\"", "\"\"");
-
         var proc = new Diagnostic.Process
         {
             StartInfo = new Diagnostic.ProcessStartInfo
             {
-                FileName = "/bin/bash",
-                Arguments = "-c \"" + command + "\"",
+                FileName = path,
+                Arguments = command,
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
                 CreateNoWindow = true
             }
         };
-
+        Debug.Log($"{proc.StartInfo.FileName} {proc.StartInfo.Arguments}");
         proc.Start();
         proc.WaitForExit();
 
