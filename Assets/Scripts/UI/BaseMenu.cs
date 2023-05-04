@@ -11,4 +11,9 @@ public class BaseMenu : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
+
+    public virtual void Toggle()
+    {
+        gameObject.SetActive(!gameObject.activeSelf);
+    }
 }

@@ -37,4 +37,10 @@ public class EventsManager : BaseManager<EventsManager>
     {
         BulletFired?.Invoke();
     }
+
+    public event Action<string> CommandExecuted;
+    public void OnCommandExecuted(string value)
+    {
+        CommandExecuted?.Invoke(value);
+    }
 }

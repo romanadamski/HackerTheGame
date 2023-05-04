@@ -1,15 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 using UnityEngine.UI;
 
 public class MapContextMenu : BaseMenu
 {
     [SerializeField]
-    private TextMeshProUGUI pathInputField;
+    private Text pathInputField;
     [SerializeField]
-    private TextMeshProUGUI commandInputField;
+    private Text commandInputField;
     [SerializeField]
     private Button commandButton;
 
@@ -23,10 +22,10 @@ public class MapContextMenu : BaseMenu
 
     private void OnCommandButtonClick()
     {
-        string git = pathInputField.text.Trim(); string status = commandInputField.text.Trim();
-        git = "git"; status = "status";
+        string git = pathInputField.text.Trim();
+        string status = commandInputField.text.Trim();
         var output = BashCommandsManager.Instance.ExecuteBashCommand(git, status);
-        Debug.Log(output);
+        EventsManager.Instance.OnCommandExecuted(output);
     }
 
     public void ShowAtPoint(Vector3 point)

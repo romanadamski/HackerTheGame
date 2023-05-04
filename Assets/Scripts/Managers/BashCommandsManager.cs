@@ -2,14 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using Diagnostic = System.Diagnostics;
 using UnityEngine;
+using System.Threading.Tasks;
 
 public class BashCommandsManager : BaseManager<BashCommandsManager>
 {
-    private void Start()
-    {
-        ExecuteBashCommand("git", "status");
-    }
-
     public string ExecuteBashCommand(string path, string command)
     {
         command = command.Replace("\"", "\"\"");
@@ -24,11 +20,9 @@ public class BashCommandsManager : BaseManager<BashCommandsManager>
                 CreateNoWindow = true
             }
         };
-        Debug.Log($"{proc.StartInfo.FileName} {proc.StartInfo.Arguments}");
+
         proc.Start();
         proc.WaitForExit();
-
         return proc.StandardOutput.ReadToEnd();
     }
-
 }

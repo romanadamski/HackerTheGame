@@ -45,3 +45,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuPrefabs:
   - {fileID: 6618447509220587472, guid: 17d84ffd88bd58248b2d82bd456cd71c, type: 3}
+  - {fileID: 8195310652752153808, guid: bf3eb1bd6165ae740b94f02ec6fc0d8d, type: 3}
+  - {fileID: 788790518313961868, guid: 1a163b703ac57e447ba3f3d50fe92667, type: 3}
